@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeyBoardChat", "Server\KeyB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyBoardChat.Web", "KeyBoardChat.Web\KeyBoardChat.Web.csproj", "{765992D0-CB4A-4552-AA2F-27D21C5555AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyBoardChat.DataAccess", "KeyBoardChat.DataAccess\KeyBoardChat.DataAccess.csproj", "{7DDB3C72-8360-4007-B1F0-4065C002AEDE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{765992D0-CB4A-4552-AA2F-27D21C5555AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{765992D0-CB4A-4552-AA2F-27D21C5555AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{765992D0-CB4A-4552-AA2F-27D21C5555AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DDB3C72-8360-4007-B1F0-4065C002AEDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DDB3C72-8360-4007-B1F0-4065C002AEDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DDB3C72-8360-4007-B1F0-4065C002AEDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DDB3C72-8360-4007-B1F0-4065C002AEDE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
