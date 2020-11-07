@@ -1,4 +1,6 @@
 using KeyBoardChat.DataAccess;
+using KeyBoardChat.DataAccess.Infrastructure;
+using KeyBoardChat.Web.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -19,11 +21,14 @@ namespace KeyBoardChat.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddHttpClient();
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionString"]));
+            services.AddMvc(options => options.EnableEndpointRouting = false);
 
-            services.AddRazorPages();
+            services
+                .AddHttpClient()
+                .AddDbContext<DataContext>(options => options.UseSqlServer(Configuration["ConnectionString"]))
+                .AddDataAccess()
+                .AddWeb()
+                .AddRazorPages();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,7 +43,8 @@ namespace KeyBoardChat.Web
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            app.UseMvc();
+            // app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
