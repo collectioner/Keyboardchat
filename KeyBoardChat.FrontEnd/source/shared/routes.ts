@@ -1,4 +1,4 @@
-const ROUTES = {
+const routesMap = {
     Authorization: {
         name: 'Authorization',
         route: '/'
@@ -25,4 +25,4 @@ const ROUTES = {
     }
 };
 
-export default ROUTES;
+export default routesMap;

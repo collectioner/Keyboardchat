@@ -3,7 +3,7 @@ import { useHistory, Route, Switch, Redirect } from 'react-router-dom';
 
 import { Sidebar } from 'components';
 import { Socket, UserData, User, Room } from 'logic';
-import ROUTES from 'shared/Routes';
+import ROUTES from 'shared/routes';
 import { Chat, RoomPanel, CreationRoom, ScreenSelector, UserPanel } from './layouts';
 
 import './Home.scss';

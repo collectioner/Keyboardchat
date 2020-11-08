@@ -82,15 +82,7 @@ function generateConfig() {
     return {
         resolve: {
             modules: ['source', 'node_modules'],
-            extensions: ['.js', '.jsx', '.ts', '.tsx'],
-            alias: {
-                shared: path.resolve(__dirname, './source/shared/'),
-                fake_data: path.resolve(__dirname, './fake_data/'),
-                styles: path.resolve(__dirname, './source/styles/'),
-                logic: path.resolve(__dirname, './source/logic/'),
-                components: path.resolve(__dirname, './source/components/'),
-                layouts: path.resolve(__dirname, './source/layouts/')
-            }
+            extensions: ['.js', '.jsx', '.ts', '.tsx']
         },
         mode: isDev ? 'development' : 'production',
         entry: path.resolve(__dirname, './source/index.tsx'),
@@ -100,7 +92,6 @@ function generateConfig() {
         plugins: generatePlugins(),
         devtool: 'eval-source-map',
         devServer: {
-            // open: s,
             hot: true,
             contentBase: outputPath,
             port: 3000,

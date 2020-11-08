@@ -105,9 +105,19 @@ module.exports = {
         '@typescript-eslint/semi': ['error'],
         '@typescript-eslint/explicit-module-boundary-types': 'off'
     },
-
     env: {
         browser: true,
         node: true
+    },
+    settings: {
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                paths: ['./source']
+            }
+        },
+        react: {
+            version: "detect"
+        }
     }
 }
