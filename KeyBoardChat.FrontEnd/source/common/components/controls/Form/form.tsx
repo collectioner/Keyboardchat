@@ -10,9 +10,9 @@ interface FormProps {
 
 export default function Form({ name, children }: FormProps) {
     return (
-        <div className="form">
+        <form className="form">
             <h2 className="form__name">{name}</h2>
             {children}
-        </div>
+        </form>
     );
 }
