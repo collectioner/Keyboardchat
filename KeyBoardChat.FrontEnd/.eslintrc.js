@@ -1,11 +1,20 @@
 module.exports = {
-    parser: 'babel-eslint',
+    parser: "@typescript-eslint/parser",
+    ignorePatterns: [
+        "**/*.d.ts",
+        "*.config.js",
+        ".eslintrc.js",
+        "dist"
+    ],
     extends: [
         'airbnb',
-        'plugin:react-hooks/recommended',
+        "plugin:@typescript-eslint/recommended",
         'plugin:react/recommended'
     ],
-
+    plugins: [
+        "putout",
+        "react-hooks"
+    ],
     rules: {
         'linebreak-style': ['error', 'windows'],
         'comma-dangle': ['error', 'never'],

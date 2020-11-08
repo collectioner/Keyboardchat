@@ -1,49 +1,67 @@
-const Webpack = require('webpack');
+const webpack = require('webpack');
 const path = require('path');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
 const MiniSCCExtractPlugin = require('mini-css-extract-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 const isDev = (/development/).test(process.env.NODE_ENV);
 
 const outputPath = path.resolve(__dirname, '../KeyBoardChat.Web/wwwroot');
 const resultOutputPath = path.resolve(outputPath, './build');
 
-function generateModule() {
-    return {
-        rules: [
+
+const generateStyleLoader = () => [
+    MiniSCCExtractPlugin.loader,
+    {
+        loader: 'css-loader',
+        options: {
+            modules: false,
+            importLoaders: 2,
+            sourceMap: true
+        }
+    },
+    {
+        loader: 'postcss-loader',
+        options: {
+            sourceMap: true
+        }
+    },
+    {
+        loader: 'sass-loader',
+        options: {
+            sourceMap: true,
+            sassOptions: {
+                includePaths: ['source']
+            }
+        }
+    }
+];
+
+const getRules = () => [
+    {
+        test: /\.js?$/,
+        loader: 'babel-loader'
+    }, {
+        test: /\.tsx?$/,
+        exclude: /node_modules/,
+        use: [
             {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-react'],
-                            plugins: ['react-hot-loader/babel']
-                        }
-                    }
-                ]
+                loader: 'babel-loader'
             },
             {
-                test: /\.s[ac]ss$/i,
-                use: [
-                    MiniSCCExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
-                ]
+                loader: 'ts-loader',
+                options: {
+                    transpileOnly: false,
+                    instance: 'client-ts'
+                }
             }
         ]
-    };
-}
+    }, {
+        test: /\.s?css$/,
+        use: generateStyleLoader()
+    }
+];
 
 function generatePlugins() {
     const plugins = [
-        new HTMLWebpackPlugin({
-            template: './source/index.html',
-            favicon: './favicon.ico'
-
-        }),
         new MiniSCCExtractPlugin({
             filename: 'bundle.css'
         })
@@ -51,18 +69,8 @@ function generatePlugins() {
 
     if (!isDev) {
         plugins.push(
-            new Webpack.IgnorePlugin({
+            new webpack.IgnorePlugin({
                 resourceRegExp: /fake\.json$/
-            })
-        );
-    }
-
-    if (isDev) {
-        plugins.push(
-            new ESLintPlugin({
-                extensions: ['js', 'jsx'],
-                emitWarning: true,
-                failOnError: !isDev
             })
         );
     }
@@ -73,7 +81,8 @@ function generatePlugins() {
 function generateConfig() {
     return {
         resolve: {
-            extensions: ['.js', '.jsx'],
+            modules: ['source', 'node_modules'],
+            extensions: ['.js', '.jsx', '.ts', '.tsx'],
             alias: {
                 shared: path.resolve(__dirname, './source/shared/'),
                 fake_data: path.resolve(__dirname, './fake_data/'),
@@ -83,16 +92,13 @@ function generateConfig() {
                 layouts: path.resolve(__dirname, './source/layouts/')
             }
         },
-
         mode: isDev ? 'development' : 'production',
-
-        entry: path.resolve(__dirname, './source/index.jsx'),
-
-        module: generateModule(),
-
+        entry: path.resolve(__dirname, './source/index.tsx'),
+        module: {
+            rules: getRules()
+        },
         plugins: generatePlugins(),
-
-        devtool: isDev ? 'eval-source-map' : false,
+        devtool: 'eval-source-map',
         devServer: {
             // open: s,
             hot: true,

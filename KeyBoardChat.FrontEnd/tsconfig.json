@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "outDir": "ts-output",
+        "sourceMap": true,
+        "strict": true,
+        "target": "es6",
+        "jsx": "react",
+        "lib": ["dom", "es6", "dom.iterable", "es7", "ESNext.Array", "es2017.object"],
+        "module": "esnext",
+        "moduleResolution": "node",
+        "baseUrl": "./source",
+        "skipLibCheck": true
+    },
+    "include": [
+        "./source/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
