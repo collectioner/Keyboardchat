@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useHistory, NavLink } from 'react-router-dom';
 
-import { Socket } from 'logic';
-import { Button, Input, InputPassword, Form } from 'components';
+import { Socket } from 'source/logic';
+import { Button, Input, InputPassword, Form } from 'source/components';
 
 import './SignUp.scss';
 

@@ -32,6 +32,7 @@
         "socket.io-client": "^2.3.1"
     },
     "devDependencies": {
+        "@types/classnames": "^2.2.11",
         "@babel/preset-react": "^7.10.4",
         "@types/react": "^16.9.56",
         "@types/react-dom": "^16.9.9",

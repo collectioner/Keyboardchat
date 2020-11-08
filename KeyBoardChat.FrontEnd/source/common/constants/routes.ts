@@ -9,7 +9,7 @@ const routesMap = {
     },
     Home: {
         name: 'Home',
-        route: '/home'
+        route: '/home/'
     },
     RoomChat: {
         name: 'RoomChat',
